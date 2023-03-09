@@ -218,8 +218,8 @@ for i in range(n):
     y1 = 1
     if (x - x1) * y1 + (y - y1) * x == k:
         print('YES')
+    elif:
+        print('MB')
     else:
         print('NO')
-
-
 
