@@ -208,16 +208,39 @@
 # print(sorted(res))
 
 'codeforces 1'
-n = int(input())
-for i in range(n):
-    x, y, k = input().split()
-    x = int(x)
-    y = int(y)
-    k = int(k)
-    x1 = 1
-    y1 = 1
-    if (x - x1) * y1 + (y - y1) * x == k:
-        print('YES')
-    else:
-        print('NO')
+# n = int(input())
+# for i in range(n):
+#     x, y, k = input().split()
+#     x = int(x)
+#     y = int(y)
+#     k = int(k)
+#     x1 = 1
+#     y1 = 1
+#     if (x - x1) * y1 + (y - y1) * x == k:
+#         print('YES')
+#     else:
+#         print('NO')
 
+
+
+'Провека commit'
+def tick_tack(h, m, s, format):
+    if format == 0:
+        if s > 30:
+            m+=1
+        return h if m < 30 else h+1
+    elif format == 1:
+        return h*60 + m if s < 30 else h*60 + m + 1
+    elif format == 2:
+        return h*60*60 + m*60 + s
+
+
+from random import *
+f = ['hours', 'minutes', 'seconds']
+for i in range(10):
+    H = randrange(0, 25)
+    M = randrange(0, 61)
+    S = randrange(0, 61)
+    F = randrange(0, 3)
+
+    print(f'{H}:{M}:{S}', f'{f[F]}: {tick_tack(H, M, S, F)}')
