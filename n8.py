@@ -28,7 +28,6 @@
 # print(result)
 # Ответ: 2961
 
-
 'Задача 8 статград'
 # from itertools import product
 # c= 0
