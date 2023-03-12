@@ -244,3 +244,6 @@ for i in range(10):
     F = randrange(0, 3)
 
     print(f'{H}:{M}:{S}', f'{f[F]}: {tick_tack(H, M, S, F)}')
+
+
+    print('lev geni` of art')
