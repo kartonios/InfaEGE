@@ -224,26 +224,65 @@
 
 
 'Провека commit'
-def tick_tack(h, m, s, format):
-    if format == 0:
-        if s > 30:
-            m+=1
-        return h if m < 30 else h+1
-    elif format == 1:
-        return h*60 + m if s < 30 else h*60 + m + 1
-    elif format == 2:
-        return h*60*60 + m*60 + s
+# def tick_tack(h, m, s, format):
+#     if format == 0:
+#         if s > 30:
+#             m+=1
+#         return h if m < 30 else h+1
+#     elif format == 1:
+#         return h*60 + m if s < 30 else h*60 + m + 1
+#     elif format == 2:
+#         return h*60*60 + m*60 + s
+#
+#
+# from random import *
+# f = ['hours', 'minutes', 'seconds']
+# for i in range(10):
+#     H = randrange(0, 25)
+#     M = randrange(0, 61)
+#     S = randrange(0, 61)
+#     F = randrange(0, 3)
+#
+#     print(f'{H}:{M}:{S}', f'{f[F]}: {tick_tack(H, M, S, F)}')
+#
+#
+#     print('lev geni` of art')
 
 
-from random import *
-f = ['hours', 'minutes', 'seconds']
-for i in range(10):
-    H = randrange(0, 25)
-    M = randrange(0, 61)
-    S = randrange(0, 61)
-    F = randrange(0, 3)
+'дз'
+while True:
+    n = int(input('Кол-во литров:'))
+    bucket5 = 0
+    bucket1 = 0
 
-    print(f'{H}:{M}:{S}', f'{f[F]}: {tick_tack(H, M, S, F)}')
+    ost = n % 6
+    bucket6 = n // 6
+
+    if ost == 1:
+        bucket1 = 1
+
+    elif ost == 2:
+        bucket1 = 2
+
+    elif ost == 3:
+        bucket1 = 3
+
+    elif ost == 4:
+        if bucket6 > 0:
+            bucket6 -= 1
+            bucket5 = 2
+        else:
+            bucket1 = 4
+
+    elif ost == 5:
+        if bucket6 > 0:
+            bucket6 -= 1
+            bucket5 = 2
+            bucket1 = 1
+        else:
+            bucket5 = 1
 
 
-    print('lev geni` of art')
+    print(f'Нужно 6 литровок: {bucket6}')
+    print(f'Нужно 5 литровок: {bucket5}')
+    print(f'Нужно 1 литровок: {bucket1}')
