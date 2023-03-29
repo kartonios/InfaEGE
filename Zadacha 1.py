@@ -1,5 +1,4 @@
 'Комбинаторика Stepik'
-
 '1.8 Задача 9'
 # from itertools import *
 # res = 0
@@ -251,70 +250,39 @@
 
 
 'дз'
-# while True:
-#     n = int(input('Кол-во литров:'))
-#     bucket5 = 0
-#     bucket1 = 0
-#
-#     ost = n % 6
-#     bucket6 = n // 6
-#
-#     if ost == 1:
-#         bucket1 = 1
-#
-#     elif ost == 2:
-#         bucket1 = 2
-#
-#     elif ost == 3:
-#         bucket1 = 3
-#
-#     elif ost == 4:
-#         if bucket6 > 0:
-#             bucket6 -= 1
-#             bucket5 = 2
-#         else:
-#             bucket1 = 4
-#
-#     elif ost == 5:
-#         if bucket6 > 0:
-#             bucket6 -= 1
-#             bucket5 = 2
-#             bucket1 = 1
-#         else:
-#             bucket5 = 1
-#
-#
-#     print(f'Нужно 6 литровок: {bucket6}')
-#     print(f'Нужно 5 литровок: {bucket5}')
-#     print(f'Нужно 1 литровок: {bucket1}')
+while True:
+    n = int(input('Кол-во литров:'))
+    bucket5 = 0
+    bucket1 = 0
 
-# from random import *
-# seed(42)
-# with open('24.txt', 'w') as f:
-#     for i in range(1500000):
-#         f.write(str(randint(0, 10000)) + '\n')
+    ost = n % 6
+    bucket6 = n // 6
 
-s = list(map(int, open(r'24.txt', ).readlines()))
+    if ost == 1:
+        bucket1 = 1
 
-n28 = 0
-n14=0
-n7 = 0
-n4 = 0
-n2 = 0
-pairs =0
-for i in range(len(s)):
-    if s[i] % 28 == 0:
-        n28 +=1
-    elif s[i] %14 ==0:
-        n14 +=1
-    elif s[i] % 7 == 0:
-        n7 +=1
-    elif s[i] % 4 == 0:
-        n4 +=1
-    elif s[i] % 2 == 0:
-        n2 +=1
-print(n28, n14, n7, n4, n2)
+    elif ost == 2:
+        bucket1 = 2
 
-pairs = n4 * n7 + n2 * n14 + n28 * 1499999
+    elif ost == 3:
+        bucket1 = 3
 
-print(pairs)
+    elif ost == 4:
+        if bucket6 > 0:
+            bucket6 -= 1
+            bucket5 = 2
+        else:
+            bucket1 = 4
+
+    elif ost == 5:
+        if bucket6 > 0:
+            bucket6 -= 1
+            bucket5 = 2
+            bucket1 = 1
+        else:
+            bucket5 = 1
+
+
+    print(f'Нужно 6 литровок: {bucket6}')
+    print(f'Нужно 5 литровок: {bucket5}')
+    print(f'Нужно 1 литровок: {bucket1}')

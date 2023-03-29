@@ -135,7 +135,7 @@ def f(numb):
         N =1
 
     chet = 0
-    nechet = 1
+    nechet = 0
     while n > 0:
         ost = n%10
         n //=10
@@ -155,6 +155,6 @@ def f(numb):
         else:
             return numb + '1'
 
-for i in range(100):
+for i in range(123456789-3, 123456789+5):
 
-    print(int(f(f(f(bin(i)[2:]))), 2))
+    print(int(f(f(f(bin(i)[2:]))), 2), i)
