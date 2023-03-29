@@ -74,53 +74,87 @@
 
 from functools import *
 from tqdm import tqdm
-@lru_cache(None)
-def f(n):
-    r = bin(n)[2:]
-    ost = sum(list(map(int, str(n)))) % 2
-    r = r + str(ost)
-    return int(r, 2)
-
-def sumd(x):
-    return sum(map(int, str(x)))
-
-def check(y):
-    y_bin = bin(y)[2:]
-    x2 = int(y_bin[:-1], 2)
-    if sumd(x2) % 2 != int(y_bin[-1]):
-        return False
-
-    y = x2
-    y_bin = bin(y)[2:]
-    x1 = int(y_bin[:-1], 2)
-    if sumd(x1) % 2 != int(y_bin[-1]):
-        return False
-
-    y = x1
-    y_bin = bin(y)[2:]
-    x0 = int(y_bin[:-1], 2)
-    return sumd(x0) % 2 == int(y_bin[-1])
-
-
+# @lru_cache(None)
+# def f(n):
+#     r = bin(n)[2:]
+#     ost = sum(list(map(int, str(n)))) % 2
+#     r = r + str(ost)
+#     return int(r, 2)
+#
+# def sumd(x):
+#     return sum(map(int, str(x)))
+#
+# def check(y):
+#     y_bin = bin(y)[2:]
+#     x2 = int(y_bin[:-1], 2)
+#     if sumd(x2) % 2 != int(y_bin[-1]):
+#         return False
+#
+#     y = x2
+#     y_bin = bin(y)[2:]
+#     x1 = int(y_bin[:-1], 2)
+#     if sumd(x1) % 2 != int(y_bin[-1]):
+#         return False
+#
+#     y = x1
+#     y_bin = bin(y)[2:]
+#     x0 = int(y_bin[:-1], 2)
+#     return sumd(x0) % 2 == int(y_bin[-1])
+#
+#
+# # k = 0
+# # for x in tqdm(range(100)):
+# #     print(x, f(f(f(x))))
+#
+#
+# # k = 0
+# # for x in tqdm(range(123456789//9, 1987654321//7)):
+# #     if f(f(f(x))) in range(123456789, 1987654322):
+# #         k += 1
+#
 # k = 0
-# for x in tqdm(range(100)):
-#     print(x, f(f(f(x))))
+# for i in range(1987654322-8, 1987654322):
+#     print(i, check(i))
+#
+# # [123456792, 1987654320] => 233024691
+#
+# # print(check(123456792), check(1987654320))
+# # for y in range(123456789, 1987654322):
+# #     if check(123456789):
+# #         k += 1
+#
+# print(k)
 
 
-# k = 0
-# for x in tqdm(range(123456789//9, 1987654321//7)):
-#     if f(f(f(x))) in range(123456789, 1987654322):
-#         k += 1
+'Задача 5'
+def f(numb):
+    n = int(numb, 2)
+    if n%2 == 0:
+        N = 0
+    else:
+        N =1
 
-k = 0
-for i in range(1987654322-8, 1987654322):
-    print(i, check(i))
+    chet = 0
+    nechet = 1
+    while n > 0:
+        ost = n%10
+        n //=10
+        if ost % 2 ==0:
+            chet+=1
+        else:
+            nechet+=1
+    if chet > nechet:
+        return numb + '1'
 
-# [123456792, 1987654320] => 233024691
+    elif nechet > chet:
+        return numb + '0'
 
-# print(check(123456792), check(1987654320))
-# for y in range(123456789, 1987654322):
-#     if check(123456789):
-#         k += 1
+    elif chet == nechet:
+        if N == 0:
+            return numb + '0'
+        else:
+            return numb + '1'
 
-print(k)
+for i in range(100):
+
+    print(int(f(f(f(bin(i)[2:]))), 2))

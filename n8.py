@@ -45,19 +45,43 @@
 #90112
 
 'Задача 8 статград'
-from itertools import *
+# from itertools import *
+#
+# def check(n):
+#     if n[2] - n[1] == 1:
+#         return False
+#     elif n[1] - n[0] == 1:
+#         return False
+#     return True
+#
+#
+# k =0
+# for i in combinations(range(11), 3):
+#     i = list(i)
+#     if check(i) == True:
+#         k+=1
+# print(k, k*(4**11))
 
-def check(n):
-    if n[2] - n[1] == 1:
-        return False
-    elif n[1] - n[0] == 1:
-        return False
-    return True
+
+'задача 8 статград'
+# from itertools import product
+# c= 0
+# execept = ['ИО','ИА','ИИ',
+#            'ОИ','ОА','ОО',
+#            'АИ','АО','АА']
+#
+# for word in product('МИТРОФАН',  repeat= 6):
+#     if len(set(word)) == 6:
+#         w = ''.join(word)
+#         sogl = w.count('М') + w.count('Т')+ w.count('Р') + w.count('Ф') + w.count('Н')
+#         glas = w.count('И') + w.count('О') + w.count('А')
+#         if sogl > glas:
+#             for i in range(len(execept)):
+#                 if execept[i] in w:
+#                     break
+#             else:
+#                 c+=1
+#
+# print(c)
 
 
-k =0
-for i in combinations(range(11), 3):
-    i = list(i)
-    if check(i) == True:
-        k+=1
-print(k, k*(4**11))
