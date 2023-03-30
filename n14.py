@@ -59,14 +59,29 @@
 
 'Задача 14 Статград'
 
-for p in range(10, 100):
+# for p in range(10, 100):
+#     for x in range(p):
+#         for y in range(p):
+#             if x == y:
+#                 continue
+#             #print(int(f'32{x}8', p) + int(f'{x}{x}{x}9', p), int(f'{y}{y}02', p))
+#             if (8 + x*p + 2*p**2 + 3*p**3) + (9 + x*p + x*p**2 + x*p**3) == (2 + y*p**2 + y*p**3):
+#                 print(x + y*p + y*p**2)
+#                 break
+
+
+'Задача 14 статград'
+from tqdm import tqdm
+
+for p in range(2, 200):
     for x in range(p):
         for y in range(p):
-            if x == y:
-                continue
-            #print(int(f'32{x}8', p) + int(f'{x}{x}{x}9', p), int(f'{y}{y}02', p))
-            if (8 + x*p + 2*p**2 + 3*p**3) + (9 + x*p + x*p**2 + x*p**3) == (2 + y*p**2 + y*p**3):
-                print(x + y*p + y*p**2)
-                break
-
-
+            for z in range(p):
+                if x == y or x == z or y == z:
+                    continue
+                n1 = (y + 4*p + y*p**2)
+                n2 = (5 + 6*p + y*p**2)
+                s = (3 + 2*p + z*p**2 + x*p**3)
+                if n1 + n2 == s:
+                    print(z + y*p + x*p**2)
+                    break
