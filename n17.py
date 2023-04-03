@@ -130,6 +130,20 @@
 #     print(all13, min13)
 """Ответ 92 299"""
 
+'Задача 17 статград'
+l = list(map(int, open(r'D:\downloads\17.txt').readlines()))
+minsqrt = min([x for x in l if str(x)[-2] == str(x)[-1]])**2
+pairs = 0
+maxsqrt = 0
+
+for i in range(len(l)-1):
+    f = abs(l[i])
+    s = abs(l[i+1])
+    if str(f)[-1] == str(s)[-2] or str(f)[-2] == str(s)[-1]:
+        if (f % 7 == 0) != (s % 7 == 0):
+            if f**2 + s**2 <= minsqrt:
+                pairs+=1
+                maxsqrt = max(maxsqrt, f**2 + s**2)
 
 
-
+print(pairs, maxsqrt)
