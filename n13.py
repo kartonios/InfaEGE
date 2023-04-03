@@ -24,7 +24,15 @@
 #
 # print(step('Е', 'Е'))
 
-for a in range(10):
-    for b in range(10):
-        if (a+b)*(a-b)*a*b == 2016:
-            print(a, b)
+'Задача 13'
+
+path = "АБ БВЕД ВГЖИ ГИ ДА ЕВЖЛ ЖЛ ИМН КД ЛДК МЖЛ НМ"
+d = {x[0]: x[1:] for x in path.split()}
+
+def f(s, end):
+    if s[-1] == end and len(s) > 1:
+        return 1
+    else:
+        return sum(f(s+c, end) for c in d[s[-1]] if c not in s[1:])
+
+print(f('Е', 'Ж'))

@@ -126,17 +126,42 @@
 
 
 'задача 16'
+# def f(a, b):
+#     if a == 0 and b == 0:
+#         return 0
+#
+#     if a > b:
+#         return f(a-1, b) + b
+#
+#     if a <= b and b > 0:
+#         return f(a, b-1) + a
+#
+# k = 0
+# for a in range(10):
+#     for b in range(10):
+#         print(a, b, f(a, b))
+
+
+'Задача 16 статград'
 def f(a, b):
-    if a == 0 and b == 0:
-        return 0
+    if b == 0:
+        return a
 
-    if a > b:
-        return f(a-1, b) + b
+    elif a >= b > 0:
+        return f(a-b, b)
 
-    if a <= b and b > 0:
-        return f(a, b-1) + a
+    elif a < b:
+        return f(b, a)
 
-k = 0
-for a in range(10):
-    for b in range(10):
-        print(a, b, f(a, b))
+
+
+a = []
+for i in range(100):
+    if f(i, 14) == 1:
+        print(i)
+        a.append(i)
+
+print(len(a), (100//12)*6-5)
+print((123456795+1)/7, (123456795-1)/7 )
+
+print((1234567888-123456795-1)-((1234567888-123456795)//7) + ((1234567888-123456795)//14) - ((1234567888-123456795)//2))

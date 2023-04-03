@@ -131,19 +131,34 @@
 
 
 'Задача 15'
-p = [i for i in range(18, 23)]
-q = [i for i in range(12, 31)]
-r = [i for i in range(23, 46)]
-
-for a_start in range(12, 100):
-    for a_end in range(a_start+1, 100):
-        # a = [i for i in range(a_start, a_end+1)]
-        for xx in range(10, 200):
-            x = xx/2
-            if ((a_start <= x <= a_end) or (17 < x < 23)) == (not(12 <= x <= 30) or (23 <= x <= 45)):
-                break
-        else:
-            print(a_start, a_end)
+# p = [i for i in range(18, 23)]
+# q = [i for i in range(12, 31)]
+# r = [i for i in range(23, 46)]
+#
+# for a_start in range(12, 100):
+#     for a_end in range(a_start+1, 100):
+#         # a = [i for i in range(a_start, a_end+1)]
+#         for xx in range(10, 200):
+#             x = xx/2
+#             if ((a_start <= x <= a_end) or (17 < x < 23)) == (not(12 <= x <= 30) or (23 <= x <= 45)):
+#                 break
+#         else:
+#             print(a_start, a_end)
 
 # print(sorted(a), len(a))
 
+
+
+'Задача 15 статград'
+
+def check(a):
+    for x in range(1000):
+        if (not(x&116 != 0 or x&92 != 0) or (not(x&69 == 0) or x&a != 0)) == 0:
+            return 0
+    else:
+        return 1
+
+for A in range(1000):
+    if check(A) == 1:
+        print(A)
+        break
