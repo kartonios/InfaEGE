@@ -126,7 +126,6 @@
 21.  11 34 + -  11+ 32+
 '''
 
-
 '19.49'
 # def g(a, b, c, m):
 #
@@ -158,36 +157,167 @@
 21.  - 24+
 '''
 
-
 '19.71'
-def f(a, b, c, m):
-    print('\t' * c, a, b, '\t', ("" if not (a + b > 68) else ("V" if c % 2 == m % 2 else "X")))
-    if a + b > 68:
-        return c%2 == m%2
-    if c == m:
-        return 0
+# def f(a, b, c, m):
+#     print('\t' * c, a, b, '\t', ("" if not (a + b > 68) else ("V" if c % 2 == m % 2 else "X")))
+#     if a + b > 68:
+#         return c%2 == m%2
+#     if c == m:
+#         return 0
+#
+#     h = [f(a+1, b, c+1, m), f(a, b+1, c+1, m), f(a+b, b, c+1, m), f(a, b+a, c+1, m)]
+#
+#     return any(h) if (c+1)%2 == m%2 else all(h)
+#
+#
+# for n in range(1, 60):
+#     for m in range(1, 5):
+#         # if f(8, n, 0, m) and m == 2:
+#         #     print(n, m)
+#         # if f(8, n, 0, m) and m == 3:
+#         #
+#         #     print(n, m)
+#         #     print('================')
+#         if f(8, n, 0, m) and m == 4:
+#             print(n, m)
+#             print('================')
+# '''
+# 19.  30 -  18?
+# 20.  22 29 - +  x? 29
+# 21.  30
+# '''
 
-    h = [f(a+1, b, c+1, m), f(a, b+1, c+1, m), f(a+b, b, c+1, m), f(a, b+a, c+1, m)]
 
-    return any(h) if (c+1)%2 == m%2 else all(h)
+'19-21 статград'
+# from functools import *
+#
+# win_sum = 46
+#
+#
+# def next_moves(c):  # c = (a, b)
+#     if c[0] > c[1]:
+#         return [(c[0], c[1] + i) for i in range(1, c[1] + 1)]
+#     elif c[0] < c[1]:
+#         return [(c[0] + i, c[1]) for i in range(1, c[0] + 1)]
+#     else:
+#         return [(c[0], c[1] + i) for i in range(1, c[1] + 1)] + [(c[0] + i, c[1]) for i in range(1, c[0] + 1)]
+#
+#
+# @lru_cache(None)
+# def game(c):
+#     if c[0] + c[1] >= win_sum:
+#         return '+'
+#     # за один ход (какой-то) достижима победная позиция -- победа Пети первым ходом
+#     if any(game(m) == '+' for m in next_moves(c)):
+#         return 'P1'
+#     # за один ход (каждый) достижима позиция, откуда есть выигр.стр. за один ход -- победа Вани первым ходом (при каждом первом ходе Пети)
+#     if all(game(m) == 'P1' for m in next_moves(c)):
+#         return 'V1'
+#     # за один ход (какой-то) достижима позиция, откуда есть выигр.стр. след. ходом -- победа Пети вторым ходом
+#     if any(game(m) == 'V1' for m in next_moves(c)):
+#         return 'P2'
+#     # за один ход (какой-то) достижима позиция, откуда есть выигр.стр. за 1 ИЛИ 2 хода -- победа Вани первым/вторым ходом
+#     if all(game(m) == 'P1' or game(m) == 'P2' for m in next_moves(c)):
+#         return 'V2'
+#     # в остальных случаях по умолчанию возвращается None -- победа достижима минимум третьим ходом
+#
+#
+# min_sum = 999999
+#
+# # for f in range(1, 46):
+# #     for s in range(f, 46):
+# #         if game((f, s)) == 'P1':
+# #             min_sum = min(min_sum, f+s)
+# #             print(f + s, game((f, s)))
+# #
+# # print(min_sum)
+#
+#
+# # maxS = 0
+# # minS = 99999
+# # for s in range(1, 41):
+# #     if game((5,s)) == 'P2':
+# #         maxS = max(maxS, s)
+# #         minS = min(minS, s)
+# #
+# # print(minS, maxS)
+#
+#
+# minS = 9999
+# for s in range(1, 41):
+#     if game((5, s)) == 'V2':
+#         minS = min(minS, s)
+#
+# print(minS)
+#
+# '''
+# 19 - 31
+# 20 - 24 33
+# 21 - 20
+#
+# '''
 
 
-for n in range(1, 60):
-    for m in range(1, 5):
-        # if f(8, n, 0, m) and m == 2:
-        #     print(n, m)
-        # if f(8, n, 0, m) and m == 3:
-        #
-        #     print(n, m)
-        #     print('================')
-        if f(8, n, 0, m) and m == 4:
-            print(n, m)
-            print('================')
+'19-21 статград'
+from functools import *
+
+def next_moves(c):
+    if c[0] < c[1]:
+        return [(c[0], c[1] + i) for i in range(1, 4)] + [(c[0] * 2, c[1])]
+
+    elif c[0] > c[1]:
+        return [(c[0] + i, c[1]) for i in range(1, 4)] + [(c[0], c[1] * 2)]
+
+    else:
+        return [(c[0] + i, c[1]) for i in range(1, 4)] + [(c[0], c[1] + i) for i in range(1, 4)]
+
+
+@lru_cache(None)
+def game(c):
+    if sum(c) > 40:
+        return 'win'
+
+    if any(game(m) == 'win' for m in next_moves(c)):
+        return 'P1'
+
+    if all(game(m) == 'P1' for m in next_moves(c)):
+        return 'V1'
+
+    if any(game(m) == 'V1' for m in next_moves(c)):
+        return 'P2'
+
+    if all(game(m) == 'P1' or game(m) == 'P2' for m in next_moves(c)):
+        return 'V2'
+
+
+
+
+# minS= 9999
+# for f in range(1, 41):
+#     for s in range(f, 41):
+#         if game((f,s)) == 'P1':
+#             minS = min(minS, f+s)
+#
+# print(minS)
+
+
+# minS = 9999
+# maxS = 0
+# for s in range(1, 36):
+#     if game((5, s)) == 'P2':
+#         minS = min(minS, s)
+#         maxS = max(maxS, s)
+#
+# print(minS, maxS)
+
+
+for s in range(1, 24):
+    if game((17, s)) == 'V2':
+        print(s)
+
+
 '''
-19.  30 -  18?
-20.  22 29 - +  x? 29
-21.  30
+19 - 28 +
+20 - 20 29 +
+21 - 9 + 
 '''
-
-
-
