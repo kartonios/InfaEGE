@@ -424,18 +424,59 @@
 #     print(0)
 
 'Задача 8.3.11'
-def combi(N):
-    return (N*(N-1)) // 2
+# def combi(N):
+#     return (N*(N-1)) // 2
+#
+#
+# n = int(input())
+# m = [0 for x in range(10)]
+# excep = 0
+# for i in range(n):
+#     num = int(input())
+#     ost = num % 10
+#     m[ost] += 1
+#
+# excep = m[1]*m[9] + m[2]*m[8] + m[3]*m[7] + m[4]*m[6] + combi(m[0]) + combi(m[5])
+#
+# print(combi(n) - excep)
 
 
-n = int(input())
-m = [0 for x in range(10)]
-excep = 0
-for i in range(n):
-    num = int(input())
-    ost = num % 10
-    m[ost] += 1
+'27 statgrad'
+l = list(map(int, open(r"D:\downloads\stat202303_files\27-B.txt").read().split()))
+l.pop(0)
+d = {(i, j): 0 for i in range(10) for j in range(10)}
+for n in l:
+    n5 = 0
+    n2 = 0
+    while n % 5 == 0:
+        n5+=1
+        n //=5
 
-excep = m[1]*m[9] + m[2]*m[8] + m[3]*m[7] + m[4]*m[6] + combi(m[0]) + combi(m[5])
+    while n % 2 == 0:
+        n2 +=1
+        n //= 2
 
-print(combi(n) - excep)
+    d[(min(9, n2), min(9, n5))] +=1
+
+pairs = 0
+
+for i, j in d.keys():
+    i_2 = 7 - i
+    j_2 = 7 - j
+
+    if i_2 > 0 or j_2 > 0:
+        pairs += d[(i, j)] * d[(max(0, i_2), max(0,j_2))]
+
+
+print(pairs)
+# c= 0
+# for n in range(len(l)):
+#     for k in range(n+1, len(l)):
+#         s = str(l[n] * l[k])
+#         if s.endswith('0'*7) and not s.endswith('0'*8) and not s.endswith('0'*9):
+#             print(l[n], l[k], l[n]*l[k])
+#             c+=1
+#
+# print(c)
+
+

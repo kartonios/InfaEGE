@@ -86,32 +86,32 @@
 
 
 'Задача с массивами'
-n = int(input())
-A = [[0]*(2*n+1) for i in range(2*n+1)]
-
-def step(a, s, n):
-    k = a[n+1][n+1]
-    if s % 2 == 1:
-        for i in range(1, s):
-            a[n+1][n+i] = a[n+1][n+i-1] + 1
-        for j in range(1, s):
-            a[n-j][n+1] = a[n-j+1][n+1] + 1
-        return a
-    else:
-        for i in range(1, s):
-            a[n+1][n-i] = a[n+1][n-i+1] + 1
-        for j in range(1, s):
-            a[n+j][n+1] = a[n+j-1][n+1] + 1
-        return a
-
-S = 0
-while A[0][2*n] == 0:
-    S+=1
-    step(A, S, n)
-
-    for row in A:
-        for x in row:
-            print(f'{x:3}', end='')
-        print()
+# n = int(input())
+# A = [[0]*(2*n+1) for i in range(2*n+1)]
+#
+# def step(a, s, n):
+#     k = a[n+1][n+1]
+#     if s % 2 == 1:
+#         for i in range(1, s):
+#             a[n+1][n+i] = a[n+1][n+i-1] + 1
+#         for j in range(1, s):
+#             a[n-j][n+1] = a[n-j+1][n+1] + 1
+#         return a
+#     else:
+#         for i in range(1, s):
+#             a[n+1][n-i] = a[n+1][n-i+1] + 1
+#         for j in range(1, s):
+#             a[n+j][n+1] = a[n+j-1][n+1] + 1
+#         return a
+#
+# S = 0
+# while A[0][2*n] == 0:
+#     S+=1
+#     step(A, S, n)
+#
+#     for row in A:
+#         for x in row:
+#             print(f'{x:3}', end='')
+#         print()
 
 

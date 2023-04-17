@@ -177,19 +177,36 @@
 #     maxlen = max(maxlen, len(m[0]))
 #     print(maxlen)
 #     # 266
-l = open(r"C:\Users\karton\Desktop\2412.txt").read().splitlines()
-alfb = 'QWERTYUIOPASDFGHJKLZXCVBNM'
-maxAlfb =0
-for i, s in enumerate(l):
-    for c in alfb:
-        for k in range(1, len(s)):
-            if c*k in s:
-                if k >= maxAlfb:
-                    maxAlfb = k
-                    charCount = s.count(c)
-                    print(i, c, k, maxAlfb, charCount)
-            else:
-                break
+# l = open(r"C:\Users\karton\Desktop\2412.txt").read().splitlines()
+# alfb = 'QWERTYUIOPASDFGHJKLZXCVBNM'
+# maxAlfb =0
+# for i, s in enumerate(l):
+#     for c in alfb:
+#         for k in range(1, len(s)):
+#             if c*k in s:
+#                 if k >= maxAlfb:
+#                     maxAlfb = k
+#                     charCount = s.count(c)
+#                     print(i, c, k, maxAlfb, charCount)
+#             else:
+#                 break
 
+
+'24 statgrad'
+maxl = {k:0 for k in "QWERTYUIOPASDFGHJKLZXCVBNM"}
+
+s = open(r"D:\downloads\stat202303_files\24.txt").read().splitlines()
+for l in s:
+    d = {k:0 for k in "QWERTYUIOPASDFGHJKLZXCVBNM"}
+    for i in range(len(l)-1):
+        if l[i] == 'A':
+            d[l[i+1]] +=1
+
+    maxv = max(d.values())
+    for k, v in d.items():
+        if v == maxv:
+            maxl[k] += 1
+
+print(max(maxl.values()))
 
 
