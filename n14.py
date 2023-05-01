@@ -73,15 +73,17 @@
 'Задача 14 статград'
 from tqdm import tqdm
 
-for p in range(2, 200):
-    for x in range(p):
-        for y in range(p):
-            for z in range(p):
-                if x == y or x == z or y == z:
-                    continue
-                n1 = (y + 4*p + y*p**2)
-                n2 = (5 + 6*p + y*p**2)
-                s = (3 + 2*p + z*p**2 + x*p**3)
-                if n1 + n2 == s:
-                    print(z + y*p + x*p**2)
-                    break
+# for p in range(2, 200):
+#     for x in range(p):
+#         for y in range(p):
+#             for z in range(p):
+#                 if x == y or x == z or y == z:
+#                     continue
+#                 n1 = (y + 4*p + y*p**2)
+#                 n2 = (5 + 6*p + y*p**2)
+#                 s = (3 + 2*p + z*p**2 + x*p**3)
+#                 if n1 + n2 == s:
+#                     print(z + y*p + x*p**2)
+#                     break
+
+

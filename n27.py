@@ -442,41 +442,89 @@
 
 
 '27 statgrad'
-l = list(map(int, open(r"D:\downloads\stat202303_files\27-B.txt").read().split()))
-l.pop(0)
-d = {(i, j): 0 for i in range(10) for j in range(10)}
-for n in l:
-    n5 = 0
-    n2 = 0
-    while n % 5 == 0:
-        n5+=1
-        n //=5
-
-    while n % 2 == 0:
-        n2 +=1
-        n //= 2
-
-    d[(min(9, n2), min(9, n5))] +=1
-
-pairs = 0
-
-for i, j in d.keys():
-    i_2 = 7 - i
-    j_2 = 7 - j
-
-    if i_2 > 0 or j_2 > 0:
-        pairs += d[(i, j)] * d[(max(0, i_2), max(0,j_2))]
-
-
-print(pairs)
+# l = list(map(int, open(r"D:\downloads\stat202303_files\27-A.txt").read().split()))
+# l.pop(0)
+# d = {(i, j): 0 for i in range(10) for j in range(10)}
+# count = 0
+# for n in l:
+#     # count+=1
+#     n5 = 0
+#     n2 = 0
+#     while n % 5 == 0:
+#         n5+=1
+#         n //=5
+#
+#     while n % 2 == 0:
+#         n2 +=1
+#         n //= 2
+#
+#     d[(min(9, n2), min(9, n5))] +=1
+#     # if count == 10000:
+#     #     break
+# pairs = 0
+#
+# for i, j in d.keys():
+#
+#     if i < 8 and j < 8:
+#         pairs += d[(i, j)] * d[(7-i, 7-j)]
+#
+#     elif i == 8 and j < 8:
+#         for k in range(0, 10):
+#             pairs += d[(i, j)] * d[(k, 7 - j)]
+#
+#     elif i == 9 and j < 8:
+#         for k in range(0, 10):
+#             pairs += d[(i, j)] * d[(k, 7-j)]
+#
+#     elif i < 8 and j == 8:
+#         for k in range(0, 10):
+#             pairs += d[(i, j)] * d[(7-i, k)]
+#
+#     elif i < 8 and j == 9:
+#         for k in range(0, 10):
+#             pairs += d[(i, j)] * d[(7-i, k)]
+#
+#
+# print(pairs)
 # c= 0
-# for n in range(len(l)):
-#     for k in range(n+1, len(l)):
+#
+# for n in range(10001):
+#     for k in range(n+1, 10001):
 #         s = str(l[n] * l[k])
 #         if s.endswith('0'*7) and not s.endswith('0'*8) and not s.endswith('0'*9):
-#             print(l[n], l[k], l[n]*l[k])
+#             # print(l[n], l[k], l[n]*l[k])
 #             c+=1
 #
 # print(c)
 
+
+'27 Demo'
+from math import *
+lines = open(r"C:\Users\karton\Desktop\InfaEGE\demo2023_files\Задание 27\27_A.txt").read().splitlines()
+n = lines.pop(0)
+dist0, bottles = map(int, lines[0].split())
+dist_prev = dist0
+box = ceil(bottles / 36)
+all_boxes = [0, box]
+all_dist = []
+total_cost = 0
+for l in lines[1:]:
+    dist, bottles = map(int, l.split())
+    box = ceil(bottles / 36)
+    all_boxes.append(box+all_boxes[-1])
+    all_dist.append(dist-dist_prev)
+    dist_prev = dist
+    total_cost += (dist - dist0) * box
+
+print(lines[:10])
+print(all_boxes, all_dist)
+
+# min_dist = 99999999999999999999999999999
+# c = 0
+# for p in range(len(all_boxes)):
+#     min_dist = min(min_dist, all_boxes[-1] - all_boxes[-2] + all_boxes[p])
+#     # c += all_dist[p]
+#     # for i in range(p, len(all_dist)):
+#     #     c += all_dist[i] - all_dist[p]
+#     print(min_dist)
 

@@ -85,3 +85,17 @@
 # print(c)
 
 
+
+from itertools import *
+c = 0
+for w in product('АВГДИНОР', repeat=4):
+    c+=1
+    word = ''.join(w)
+    if word[:2] == 'ГО':
+        print(c)
+        break
+
+
+
+
+
