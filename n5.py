@@ -127,34 +127,58 @@ from tqdm import tqdm
 
 
 'Задача 5'
-def f(numb):
-    n = int(numb, 2)
-    if n%2 == 0:
-        N = 0
+# def f(numb):
+#     n = int(numb, 2)
+#     if n%2 == 0:
+#         N = 0
+#     else:
+#         N =1
+#
+#     chet = 0
+#     nechet = 0
+#     while n > 0:
+#         ost = n%10
+#         n //=10
+#         if ost % 2 ==0:
+#             chet+=1
+#         else:
+#             nechet+=1
+#     if chet > nechet:
+#         return numb + '1'
+#
+#     elif nechet > chet:
+#         return numb + '0'
+#
+#     elif chet == nechet:
+#         if N == 0:
+#             return numb + '0'
+#         else:
+#             return numb + '1'
+#
+# for i in range(123456789-3, 123456789+5):
+#
+#     print(int(f(f(f(bin(i)[2:]))), 2), i)
+
+'Задача 5 статград'
+def f(n):
+    r = bin(n)[2:]
+    if n % 5 == 0:
+        r = r + bin(5)[2:]
     else:
-        N =1
+        r = r + '1'
+    n = int(r,2)
+    if n % 7 == 0:
+        r = r + bin(7)[2:]
+    else:
+        r = r + '1'
 
-    chet = 0
-    nechet = 0
-    while n > 0:
-        ost = n%10
-        n //=10
-        if ost % 2 ==0:
-            chet+=1
-        else:
-            nechet+=1
-    if chet > nechet:
-        return numb + '1'
+    return int(r, 2)
 
-    elif nechet > chet:
-        return numb + '0'
 
-    elif chet == nechet:
-        if N == 0:
-            return numb + '0'
-        else:
-            return numb + '1'
 
-for i in range(123456789-3, 123456789+5):
+maxN = 0
+for i in range(1000000, 0,-1):
+    if f(i) < 1728404:
+        maxN = max(maxN, i)
+print(maxN)
 
-    print(int(f(f(f(bin(i)[2:]))), 2), i)

@@ -99,14 +99,58 @@
 #         s = s.replace('010', '00', 1)
 #     print(s)
 
-i = 0
-k = 2
-for n in range(2, 149+4, 2):
-    i+=1
-    if i % 2 == 0:
-        k+=2
+# i = 0
+# k = 2
+# for n in range(2, 149+4, 2):
+#     i+=1
+#     if i % 2 == 0:
+#         k+=2
+#
+#     elif i % 2 == 1:
+#         k += 1
+#
+#     print(n, k)
 
-    elif i % 2 == 1:
-        k += 1
 
-    print(n, k)
+'Задача 12 статград'
+def f(s):
+    while '00' not in s:
+        s =s.replace('02','101',1)
+        s =s.replace('11','2',1)
+        s =s.replace('012','30',1)
+        s =s.replace('010','00',1)
+    return s
+
+
+def sum_digit(n):
+    return sum(map(int, list(n)))
+
+
+def check(n):
+    m = sum_digit(n)
+    for d in range(2, m//2):
+        if m % d == 0:
+            return False
+    else:
+        return True
+
+
+from itertools import *
+for n in range(6, 12):
+    for c in combinations(range(n), r=5):
+        s = '0' + ''.join(('1' if j in c else '2') for j in range(n)) + '0'
+        r = f(s)
+
+        if check(r):
+            # print(s, r, True)
+            print(n, '\t', s, '\t', s.count('2'), '\t', r, '\t', sum_digit(r))
+
+
+for x2 in range(41, 1000):
+    n = 40 + x2*2 -1
+    for d in range(2, n//2+1):
+        if n % d == 0:
+            break
+    else:
+        print(x2)
+        break
