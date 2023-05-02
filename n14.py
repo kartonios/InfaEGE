@@ -87,3 +87,14 @@ from tqdm import tqdm
 #                     break
 
 
+'Задача 14 статград'
+for p in range(5, 32):
+    for x in range(p):
+        for y in range(p):
+            n1 = 2 + 1*p
+            n2 = 4 + 3*p
+            if n1 * n2 == 2 + y*p + x*p**2:
+                print(x+y*p)
+                break
+
+# 34

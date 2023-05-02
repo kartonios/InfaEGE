@@ -26,13 +26,31 @@
 
 'Задача 13'
 
-path = "АБ БВЕД ВГЖИ ГИ ДА ЕВЛЖ ЖЛ ИМН КД ЛДК МЖЛ НМ"
+# path = "АБ БВЕД ВГЖИ ГИ ДА ЕВЛЖ ЖЛ ИМН КД ЛДК МЖЛ НМ"
+# d = {x[0]: x[1:] for x in path.split()}
+#
+# def f(s, end):
+#     if s[-1] == end and len(s) > 1:
+#         return 1
+#     else:
+#         return sum(f(s+c, end) for c in d[s[-1]] if c not in s[0:])
+#
+# print(f('Е', 'Ж'))
+
+
+'Задача 13 статград'
+path = "АБ БВЕ ВГИЖ ГИ ДАБ ЕВДЛ ЖЕМ ИЖН КД ЛДК МЕЛ НМ"
 d = {x[0]: x[1:] for x in path.split()}
 
 def f(s, end):
-    if s[-1] == end and len(s) > 1:
+    if s[-1] == end:
         return 1
-    else:
-        return sum(f(s+c, end) for c in d[s[-1]] if c not in s[0:])
+    return sum(f(s+c, end) for c in d[s[-1]] if c not in s[0:])
 
-print(f('Е', 'Ж'))
+print(f("А", "Н"))
+
+# 4
+
+
+
+
