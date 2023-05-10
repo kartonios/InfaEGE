@@ -113,44 +113,66 @@
 
 
 'Задача 12 статград'
-def f(s):
-    while '00' not in s:
-        s =s.replace('02','101',1)
-        s =s.replace('11','2',1)
-        s =s.replace('012','30',1)
-        s =s.replace('010','00',1)
-    return s
+# def f(s):
+#     while '00' not in s:
+#         s =s.replace('02','101',1)
+#         s =s.replace('11','2',1)
+#         s =s.replace('012','30',1)
+#         s =s.replace('010','00',1)
+#     return s
+#
+#
+# def sum_digit(n):
+#     return sum(map(int, list(n)))
+#
+#
+# def check(n):
+#     m = sum_digit(n)
+#     for d in range(2, m//2):
+#         if m % d == 0:
+#             return False
+#     else:
+#         return True
+#
+#
+# from itertools import *
+# for n in range(6, 12):
+#     for c in combinations(range(n), r=5):
+#         s = '0' + ''.join(('1' if j in c else '2') for j in range(n)) + '0'
+#         r = f(s)
+#
+#         if check(r):
+#             # print(s, r, True)
+#             print(n, '\t', s, '\t', s.count('2'), '\t', r, '\t', sum_digit(r))
+#
+#
+# for x2 in range(41, 1000):
+#     n = 40 + x2*2 -1
+#     for d in range(2, n//2+1):
+#         if n % d == 0:
+#             break
+#     else:
+#         print(x2)
+#         break
 
 
-def sum_digit(n):
-    return sum(map(int, list(n)))
+'12 школьное'
 
+# for n in range(1, 100):
+#     for n1 in range(1, 100):
+#         for n2 in range(1, 100):
+#             s = '0' + '1'*n +'2'*n1 + '3'*n2
+#             while '01' in s or '02' in s or '03' in s:
+#                 s = s.replace('01', '2302', 1)
+#                 s = s.replace('02', '10', 1)
+#                 s = s.replace('03', '201', 1)
+#             if s.count('1') == 40 and s.count('2') == 10 and s.count('3') == 8:
+#                 print(n)
+#                 break
 
-def check(n):
-    m = sum_digit(n)
-    for d in range(2, m//2):
-        if m % d == 0:
-            return False
-    else:
-        return True
+s = '1' * 84
+while '11111' in s or '888' in s:
+    s = s.replace('222', '1', 1)
+    s = s.replace('111', '2', 1)
 
-
-from itertools import *
-for n in range(6, 12):
-    for c in combinations(range(n), r=5):
-        s = '0' + ''.join(('1' if j in c else '2') for j in range(n)) + '0'
-        r = f(s)
-
-        if check(r):
-            # print(s, r, True)
-            print(n, '\t', s, '\t', s.count('2'), '\t', r, '\t', sum_digit(r))
-
-
-for x2 in range(41, 1000):
-    n = 40 + x2*2 -1
-    for d in range(2, n//2+1):
-        if n % d == 0:
-            break
-    else:
-        print(x2)
-        break
+print(s)
