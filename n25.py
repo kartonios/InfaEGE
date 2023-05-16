@@ -93,6 +93,9 @@ for n in range(174457, 174506):
         count +=1
 
 print(count)
+
+
+
 # Ответ:
 # 174459 {58153, 3}
 # 174461 {24923, 7}
@@ -103,3 +106,18 @@ print(count)
 # 174485 {34897, 5}
 # 174497 {827, 211}
 # 174502 {2, 87251}
+
+
+'25'
+def div(x):
+    d = set()
+    for i in range(1, int(x**0.5)+1):
+        if x % i ==0:
+            d.add(i)
+            d.add(x//i)
+        return sorted(d)
+
+for x in range(190201, 190281):
+    d = [i for i in div(x) if i%2==0]
+    if len(d) == 4:
+        print(d)
