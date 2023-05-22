@@ -131,19 +131,39 @@
 """Ответ 92 299"""
 
 'Задача 17 статград'
-l = list(map(int, open(r'D:\downloads\17.txt').readlines()))
-minsqrt = min([x for x in l if str(x)[-2] == str(x)[-1]])**2
+# l = list(map(int, open(r'D:\downloads\17.txt').readlines()))
+# minsqrt = min([x for x in l if str(x)[-2] == str(x)[-1]])**2
+# pairs = 0
+# maxsqrt = 0
+#
+# for i in range(len(l)-1):
+#     f = abs(l[i])
+#     s = abs(l[i+1])
+#     if str(f)[-1] == str(s)[-2] or str(f)[-2] == str(s)[-1]:
+#         if (f % 7 == 0) != (s % 7 == 0):
+#             if f**2 + s**2 <= minsqrt:
+#                 pairs+=1
+#                 maxsqrt = max(maxsqrt, f**2 + s**2)
+#
+#
+# print(pairs, maxsqrt)
+
+
+'17 статград'
+l = list(map(int, open(r"C:\Users\karton\Desktop\InfaEGE\ege\stat202304_files\17.txt").read().split()))
+min5 = 99999
 pairs = 0
-maxsqrt = 0
+m = 0
 
-for i in range(len(l)-1):
-    f = abs(l[i])
-    s = abs(l[i+1])
-    if str(f)[-1] == str(s)[-2] or str(f)[-2] == str(s)[-1]:
-        if (f % 7 == 0) != (s % 7 == 0):
-            if f**2 + s**2 <= minsqrt:
-                pairs+=1
-                maxsqrt = max(maxsqrt, f**2 + s**2)
+for n in l:
+    if len(str(n)) == 3 and n % 10 == 5:
+        min5 = min(min5, n)
 
-
-print(pairs, maxsqrt)
+for x in range(len(l)-1):
+    f = l[x]
+    s = l[x+1]
+    if (len(str(f)) == 4 and len(str(s)) != 4) or (len(str(f)) != 4 and len(str(s)) == 4):
+        if (f**2 + s**2) % min5 == 0:
+            pairs+=1
+            m = max(m, f**2 + s**2)
+print(pairs, m)

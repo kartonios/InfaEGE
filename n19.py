@@ -259,35 +259,35 @@
 
 
 '19-21 статград'
-from functools import *
-
-def next_moves(c):
-    if c[0] < c[1]:
-        return [(c[0], c[1] + i) for i in range(1, 4)] + [(c[0] * 2, c[1])]
-
-    elif c[0] > c[1]:
-        return [(c[0] + i, c[1]) for i in range(1, 4)] + [(c[0], c[1] * 2)]
-
-    else:
-        return [(c[0] + i, c[1]) for i in range(1, 4)] + [(c[0], c[1] + i) for i in range(1, 4)]
-
-
-@lru_cache(None)
-def game(c):
-    if sum(c) > 40:
-        return 'win'
-
-    if any(game(m) == 'win' for m in next_moves(c)):
-        return 'P1'
-
-    if all(game(m) == 'P1' for m in next_moves(c)):
-        return 'V1'
-
-    if any(game(m) == 'V1' for m in next_moves(c)):
-        return 'P2'
-
-    if all(game(m) == 'P1' or game(m) == 'P2' for m in next_moves(c)):
-        return 'V2'
+# from functools import *
+#
+# def next_moves(c):
+#     if c[0] < c[1]:
+#         return [(c[0], c[1] + i) for i in range(1, 4)] + [(c[0] * 2, c[1])]
+#
+#     elif c[0] > c[1]:
+#         return [(c[0] + i, c[1]) for i in range(1, 4)] + [(c[0], c[1] * 2)]
+#
+#     else:
+#         return [(c[0] + i, c[1]) for i in range(1, 4)] + [(c[0], c[1] + i) for i in range(1, 4)]
+#
+#
+# @lru_cache(None)
+# def game(c):
+#     if sum(c) > 40:
+#         return 'win'
+#
+#     if any(game(m) == 'win' for m in next_moves(c)):
+#         return 'P1'
+#
+#     if all(game(m) == 'P1' for m in next_moves(c)):
+#         return 'V1'
+#
+#     if any(game(m) == 'V1' for m in next_moves(c)):
+#         return 'P2'
+#
+#     if all(game(m) == 'P1' or game(m) == 'P2' for m in next_moves(c)):
+#         return 'V2'
 
 
 
@@ -311,10 +311,9 @@ def game(c):
 # print(minS, maxS)
 
 
-for s in range(1, 24):
-    if game((17, s)) == 'V2':
-        print(s)
-
+# for s in range(1, 24):
+#     if game((17, s)) == 'V2':
+#         print(s)
 
 '''
 19 - 28 +
@@ -323,18 +322,62 @@ for s in range(1, 24):
 '''
 
 
-def f(s, c, m):
-    if s >= 351:
-        return c % 2 == m % 2
-    if c == m:
-        return 0
+# def f(s, c, m):
+#     if s >= 351:
+#         return c % 2 == m % 2
+#     if c == m:
+#         return 0
+#
+#     h = [f(s+1, c+1, m), f(s+4, c+1, m), f(s*2, c+1, m)]
+#
+#     return any(h) if (c + 1) % 2 == m % 2 else all(h)
+#
+# print(f'19 {[s for s in range(1, 351) if f(s, 0 , 2)]}')
+#
+# print(f'20 {[s for s in range(1, 351) if f(s, 0, 3) and not(f(s, 0, 1))]}')
+#
+# print(f'21 {[s for s in range(1, 351) if (f(s, 0, 2) or f(s, 0, 4)) and not(f(s, 0, 2))]}')
 
-    h = [f(s+1, c+1, m), f(s+4, c+1, m), f(s*2, c+1, m)]
 
-    return any(h) if (c + 1) % 2 == m % 2 else all(h)
+'19-21 статград'
+from functools import lru_cache
 
-print(f'19 {[s for s in range(1, 351) if f(s, 0 , 2)]}')
 
-print(f'20 {[s for s in range(1, 351) if f(s, 0, 3) and not(f(s, 0, 1))]}')
+def next_moves(c):
+    if c[0] > c[1]:
+        return [(c[0] + n, c[1]) for n in range(1,4)] + [(c[0], c[1]*2)]
+    elif c[1] > c[0]:
+        return [(c[0], c[1] + m) for m in range(1, 4)] + [(c[0]*2, c[1])]
+    else:
+        return [(c[0] + p, c[1]) for p in range(1, 4)] + [(c[0], c[1] + k) for k in range(1, 4)]
 
-print(f'21 {[s for s in range(1, 351) if (f(s, 0, 2) or f(s, 0, 4)) and not(f(s, 0, 2))]}')
+@lru_cache(None)
+def game(c):
+    if c[0] >= 48 or c[1] >= 48:
+        return 'win'
+    elif any(game(m) == 'win' for m in next_moves(c)):
+        return 'p1'
+    elif all(game(m) == 'p1' for m in next_moves(c)):
+        return 'v1'
+    elif any(game(m) == 'v1' for m in next_moves(c)):
+        return 'p2'
+    elif all(game(m) == 'p1' or game(m) == 'p2' for m in next_moves(c)):
+        return 'v2'
+
+
+
+# min_sum = 9999
+# for s in range(1, 47):
+#     for end in range(s, 47):
+#         if game((s, end)) == 'p1':
+#             min_sum = min(min_sum, s+end)
+#
+# print(min_sum)
+
+# for end in range(1, 48):
+#     if game((13, end)) == 'p2':
+#         print(end)
+
+for end in range(1, 48):
+    if game((39, end)) == 'v2':
+        print(end)
