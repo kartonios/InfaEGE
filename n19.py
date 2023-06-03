@@ -340,29 +340,29 @@
 
 
 '19-21 статград'
-from functools import lru_cache
-
-
-def next_moves(c):
-    if c[0] > c[1]:
-        return [(c[0] + n, c[1]) for n in range(1,4)] + [(c[0], c[1]*2)]
-    elif c[1] > c[0]:
-        return [(c[0], c[1] + m) for m in range(1, 4)] + [(c[0]*2, c[1])]
-    else:
-        return [(c[0] + p, c[1]) for p in range(1, 4)] + [(c[0], c[1] + k) for k in range(1, 4)]
-
-@lru_cache(None)
-def game(c):
-    if c[0] >= 48 or c[1] >= 48:
-        return 'win'
-    elif any(game(m) == 'win' for m in next_moves(c)):
-        return 'p1'
-    elif all(game(m) == 'p1' for m in next_moves(c)):
-        return 'v1'
-    elif any(game(m) == 'v1' for m in next_moves(c)):
-        return 'p2'
-    elif all(game(m) == 'p1' or game(m) == 'p2' for m in next_moves(c)):
-        return 'v2'
+# from functools import lru_cache
+#
+#
+# def next_moves(c):
+#     if c[0] > c[1]:
+#         return [(c[0] + n, c[1]) for n in range(1,4)] + [(c[0], c[1]*2)]
+#     elif c[1] > c[0]:
+#         return [(c[0], c[1] + m) for m in range(1, 4)] + [(c[0]*2, c[1])]
+#     else:
+#         return [(c[0] + p, c[1]) for p in range(1, 4)] + [(c[0], c[1] + k) for k in range(1, 4)]
+#
+# @lru_cache(None)
+# def game(c):
+#     if c[0] >= 48 or c[1] >= 48:
+#         return 'win'
+#     elif any(game(m) == 'win' for m in next_moves(c)):
+#         return 'p1'
+#     elif all(game(m) == 'p1' for m in next_moves(c)):
+#         return 'v1'
+#     elif any(game(m) == 'v1' for m in next_moves(c)):
+#         return 'p2'
+#     elif all(game(m) == 'p1' or game(m) == 'p2' for m in next_moves(c)):
+#         return 'v2'
 
 
 
@@ -378,6 +378,123 @@ def game(c):
 #     if game((13, end)) == 'p2':
 #         print(end)
 
-for end in range(1, 48):
-    if game((39, end)) == 'v2':
-        print(end)
+# for end in range(1, 48):
+#     if game((39, end)) == 'v2':
+#         print(end)
+#
+
+
+'Задача 19.59'
+# from functools import lru_cache
+# def next_m(c):
+#     return [(c[0]+1, c[1]), (c[0], c[1]+1), (c[0]*4, c[1]), (c[0], c[1]*4)]
+#
+# @lru_cache(None)
+# def game(c):
+#     if sum(c) >= 108:
+#         return 'win'
+#
+#     elif any(game(m) == 'win' for m in next_m(c)):
+#         return 'p1'
+#
+#     elif all(game(m) == 'p1' for m in next_m(c)):
+#         return 'v1'
+#
+#     elif any(game(m) == 'v1' for m in next_m(c)):
+#         return 'p2'
+#
+#     elif all(game(m) == 'p1' or game(m) == 'p2' for m in next_m(c)):
+#         return 'v2'
+#
+#
+# for s2 in range(1, 102):
+#     if game((6, s2)) == 'v1':
+#         print(s2)
+
+'''
+19.  26 
+20.  11 25
+21.  24
+'''
+
+
+'Задача 19.115'
+# import sys
+# from functools import lru_cache
+# sys.setrecursionlimit(3000)
+# def n_m(c):
+#     return [c+1, c+3, c+11]
+#
+# @lru_cache(None)
+# def game(c):
+#     if c % 10 == 0:
+#         return 'win'
+#
+#     elif any(game(m) == 'win' for m in n_m(c)):
+#         return 'p1'
+#
+#     elif all(game(m) == 'p1' for m in n_m(c)):
+#         return 'v1'
+#
+#     elif any(game(m) == 'v1' for m in n_m(c)):
+#         return 'p2'
+#
+#     elif all(game(m) == 'p1' or game(m) == 'p2' for m in n_m(c)):
+#         return 'v2'
+#
+#
+# for s in range(11, 15):
+#     if game(s) == 'v1' and s%10 !=0:
+#         print(s)
+
+# from functools import lru_cache
+# @lru_cache(None)
+# def f(a, c, m):
+#     if a%10 == 0:
+#         return c == m
+#     if a > 100:
+#         return 0
+#
+#     h = [f(a+1, c+1, m), f(a+3, c+1, m), f(a+11, c+1, m)]
+#
+#     return any(h) if (c+1)%2 == m%2 else all(h)
+#
+#
+# moves = []
+# for s in range(11, 100):
+#     if s%10 != 10 and  f(s, 0, 4) == 1:
+#         moves.append(s)
+# print(sum(moves))
+
+'''
+19. 12    ? 16
+20. 16
+21. 294
+'''
+
+'Задача 19.112'
+def game(a, c, m):
+    if a == 42:
+        return c%2 == m%2
+    if c > m:
+        return 0
+
+    if a < 42:
+        h = [game(a+1, c+1, m), game(a+3, c+1, m), game(a+7, c+1, m)]
+        return any(h) if (c + 1) % 2 == m % 2 else all(h)
+
+    elif a > 42:
+        h = [game(a-1, c+1, m), game(a-3, c+1, m), game(a-7, c+1, m)]
+        return any(h) if (c + 1) % 2 == m % 2 else all(h)
+
+for s in range(1, 1000):
+    if game(s, 0, 4):
+        print(s)
+
+
+'''
+19. 38    
+20. 31 35
+21. 50
+'''
+
