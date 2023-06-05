@@ -412,9 +412,9 @@
 #         print(s2)
 
 '''
-19.  26 
-20.  11 25
-21.  24
+19.  26 - 7 +
+20.  11 25 + +
+21.  24 +
 '''
 
 
@@ -426,26 +426,30 @@
 #     return [c+1, c+3, c+11]
 #
 # @lru_cache(None)
-# def game(c):
+# def game(c, n=0):
 #     if c % 10 == 0:
 #         return 'win'
+#     if n > 4:
+#         return 'stop'
 #
-#     elif any(game(m) == 'win' for m in n_m(c)):
+#     if any(game(m, n+1) == 'win' for m in n_m(c)):
 #         return 'p1'
 #
-#     elif all(game(m) == 'p1' for m in n_m(c)):
+#     if all(game(m, n+1) == 'p1' for m in n_m(c)):
 #         return 'v1'
 #
-#     elif any(game(m) == 'v1' for m in n_m(c)):
+#     if any(game(m, n+1) == 'v1' for m in n_m(c)):
 #         return 'p2'
 #
-#     elif all(game(m) == 'p1' or game(m) == 'p2' for m in n_m(c)):
+#     if all(game(m, n+1) == 'p1' or game(m, n+1) == 'p2' for m in n_m(c)):
 #         return 'v2'
 #
+# mass = []
+# for s in range(11, 100):
+#     if game(s) == 'v2' and s%10 !=0:
+#         mass.append(s)
 #
-# for s in range(11, 15):
-#     if game(s) == 'v1' and s%10 !=0:
-#         print(s)
+# print(sum(mass))
 
 # from functools import lru_cache
 # @lru_cache(None)
@@ -467,34 +471,58 @@
 # print(sum(moves))
 
 '''
-19. 12    ? 16
-20. 16
-21. 294
+19. 12 -    ? 16 +
+20. 16 -      18 +
+21. 294 -     954 +
 '''
 
 'Задача 19.112'
-def game(a, c, m):
-    if a == 42:
-        return c%2 == m%2
-    if c > m:
-        return 0
+def n_m(c):
+    if c > 42:
+        return [c-1, c-3, c-7]
+    if c < 42:
+        return [c+1, c+3, c+7]
 
-    if a < 42:
-        h = [game(a+1, c+1, m), game(a+3, c+1, m), game(a+7, c+1, m)]
-        return any(h) if (c + 1) % 2 == m % 2 else all(h)
+def game(c, n=0):
+    if c == 42:
+        return 'win'
+    if n > 4:
+        return 'stop'
 
-    elif a > 42:
-        h = [game(a-1, c+1, m), game(a-3, c+1, m), game(a-7, c+1, m)]
-        return any(h) if (c + 1) % 2 == m % 2 else all(h)
+    if any(game(m, n+1) == 'win' for m in n_m(c)):
+        return 'p1'
+    if all(game(m, n+1) == 'p1' for m in n_m(c)):
+        return 'v1'
+    if any(game(m, n+1) == 'v1' for m in n_m(c)):
+        return 'p2'
+    if all(game(m, n+1) == 'p1' or game(m, n+1) == 'p2' for m in n_m(c)):
+        return 'v2'
 
-for s in range(1, 1000):
-    if game(s, 0, 4):
+for s in range(1, 100):
+    if game(s) == 'p2':
         print(s)
+# def game(a, c, m):
+#     if a == 42:
+#         return c%2 == m%2
+#     if c > m:
+#         return 0
+#
+#     if a < 42:
+#         h = [game(a+1, c+1, m), game(a+3, c+1, m), game(a+7, c+1, m)]
+#         return any(h) if (c + 1) % 2 == m % 2 else all(h)
+#
+#     elif a > 42:
+#         h = [game(a-1, c+1, m), game(a-3, c+1, m), game(a-7, c+1, m)]
+#         return any(h) if (c + 1) % 2 == m % 2 else all(h)
+#
+# for s in range(1, 1000):
+#     if game(s, 0, 4):
+#         print(s)
 
 
 '''
-19. 38    
-20. 31 35
-21. 50
+19. 38 -   28 +
+20. 31 35 + -    31 37 + + 
+21. 50 + 
 '''
 
