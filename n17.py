@@ -150,20 +150,35 @@
 
 
 '17 статград'
-l = list(map(int, open(r"C:\Users\karton\Desktop\InfaEGE\ege\stat202304_files\17.txt").read().split()))
-min5 = 99999
-pairs = 0
-m = 0
+# l = list(map(int, open(r"C:\Users\karton\Desktop\InfaEGE\ege\stat202304_files\17.txt").read().split()))
+# min5 = 99999
+# pairs = 0
+# m = 0
+#
+# for n in l:
+#     if len(str(n)) == 3 and n % 10 == 5:
+#         min5 = min(min5, n)
+#
+# for x in range(len(l)-1):
+#     f = l[x]
+#     s = l[x+1]
+#     if (len(str(f)) == 4 and len(str(s)) != 4) or (len(str(f)) != 4 and len(str(s)) == 4):
+#         if (f**2 + s**2) % min5 == 0:
+#             pairs+=1
+#             m = max(m, f**2 + s**2)
+# print(pairs, m)
 
-for n in l:
-    if len(str(n)) == 3 and n % 10 == 5:
-        min5 = min(min5, n)
 
-for x in range(len(l)-1):
-    f = l[x]
-    s = l[x+1]
-    if (len(str(f)) == 4 and len(str(s)) != 4) or (len(str(f)) != 4 and len(str(s)) == 4):
-        if (f**2 + s**2) % min5 == 0:
-            pairs+=1
-            m = max(m, f**2 + s**2)
-print(pairs, m)
+'17'
+a = [int(x) for x in open('112.txt')]
+min53 = min([x for x in a if 99 < x < 1000 and x % 10 == 5])
+r = []
+count = 0
+for i in range(len(a)-1):
+    a1 = a[i]
+    a2 = a[i+1]
+    if ((99 < a1 < 1000) or (99 < a2 < 1000)) and ((a1+a2) % min53 == 0):
+        r.append(a1+a2)
+        count += 1
+
+print(count, max(r))
