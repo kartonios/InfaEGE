@@ -498,33 +498,59 @@
 # print(c)
 
 
-'27 Demo'
-from math import *
-lines = open(r"C:\Users\karton\Desktop\InfaEGE\demo2023_files\Задание 27\27_A.txt").read().splitlines()
-n = lines.pop(0)
-dist0, bottles = map(int, lines[0].split())
-dist_prev = dist0
-box = ceil(bottles / 36)
-all_boxes = [0, box]
-all_dist = []
-total_cost = 0
-for l in lines[1:]:
-    dist, bottles = map(int, l.split())
-    box = ceil(bottles / 36)
-    all_boxes.append(box+all_boxes[-1])
-    all_dist.append(dist-dist_prev)
-    dist_prev = dist
-    total_cost += (dist - dist0) * box
+# '27 Demo'
+# from math import *
+# lines = open(r"C:\Users\karton\Desktop\InfaEGE\demo2023_files\Задание 27\27_A.txt").read().splitlines()
+# n = lines.pop(0)
+# dist0, bottles = map(int, lines[0].split())
+# dist_prev = dist0
+# box = ceil(bottles / 36)
+# all_boxes = [0, box]
+# all_dist = []
+# total_cost = 0
+# for l in lines[1:]:
+#     dist, bottles = map(int, l.split())
+#     box = ceil(bottles / 36)
+#     all_boxes.append(box+all_boxes[-1])
+#     all_dist.append(dist-dist_prev)
+#     dist_prev = dist
+#     total_cost += (dist - dist0) * box
+#
+# print(lines[:10])
+# print(all_boxes, all_dist)
+#
+# # min_dist = 99999999999999999999999999999
+# # c = 0
+# # for p in range(len(all_boxes)):
+# #     min_dist = min(min_dist, all_boxes[-1] - all_boxes[-2] + all_boxes[p])
+# #     # c += all_dist[p]
+# #     # for i in range(p, len(all_dist)):
+# #     #     c += all_dist[i] - all_dist[p]
+# #     print(min_dist)
+#
 
-print(lines[:10])
-print(all_boxes, all_dist)
 
-# min_dist = 99999999999999999999999999999
-# c = 0
-# for p in range(len(all_boxes)):
-#     min_dist = min(min_dist, all_boxes[-1] - all_boxes[-2] + all_boxes[p])
-#     # c += all_dist[p]
-#     # for i in range(p, len(all_dist)):
-#     #     c += all_dist[i] - all_dist[p]
-#     print(min_dist)
+
+'27 demo2022'
+f = list(map(int, open(r"C:\Users\karton\Desktop\InfaEGE\demo2022_files\27\27_B.txt").read().split()))
+n = f.pop(0)
+m = [0] * 43
+count_len = 0
+last_len = 0
+len_mass = []
+
+for i in range(n):
+    m[f[i] % 43] += 1
+    count_len += f[i]
+
+    if f[i] % 43 != 0:
+        len_mass.append((m[0] - last_len, count_len))
+        last_len = m[0]
+        count_len = 0
+
+
+len_mass.sort(key=lambda x: x[1], reverse=True)
+print(len_mass)
+
+
 
