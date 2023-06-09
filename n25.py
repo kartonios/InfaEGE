@@ -74,26 +74,25 @@
 # print(*sorted(res))
 
 'Задача 25'
-count = 0
-for n in range(174457, 174506):
-    n1 = n
-    i = 2
-    sep = []
-    while n > 1:
-        if n % i == 0:
-            n //=i
-            sep.append(i)
-        else:
-            i+=1
-            if i > n:
-                break
-
-    if len(set(sep)) == 2:
-        print(n1, set(sep))
-        count +=1
-
-print(count)
-
+# count = 0
+# for n in range(174457, 174506):
+#     n1 = n
+#     i = 2
+#     sep = []
+#     while n > 1:
+#         if n % i == 0:
+#             n //=i
+#             sep.append(i)
+#         else:
+#             i+=1
+#             if i > n:
+#                 break
+#
+#     if len(set(sep)) == 2:
+#         print(n1, set(sep))
+#         count +=1
+#
+# print(count)
 
 
 # Ответ:
@@ -109,15 +108,68 @@ print(count)
 
 
 '25'
-def div(x):
-    d = set()
-    for i in range(1, int(x**0.5)+1):
-        if x % i ==0:
-            d.add(i)
-            d.add(x//i)
-        return sorted(d)
+# def div(x):
+#     d = set()
+#     for i in range(1, int(x**0.5)+1):
+#         if x % i ==0:
+#             d.add(i)
+#             d.add(x//i)
+#         return sorted(d)
+#
+# for x in range(190201, 190281):
+#     d = [i for i in div(x) if i%2==0]
+#     if len(d) == 4:
+#         print(d)
 
-for x in range(190201, 190281):
-    d = [i for i in div(x) if i%2==0]
-    if len(d) == 4:
-        print(d)
+
+'Задача 25'
+# from fnmatch import *
+#
+# for i in range(0, 10**10, 4891):
+#     n = str(i)
+#     if fnmatch(n, '1?7602*0'):
+#         print(n)
+
+
+'Задача 25.299'
+# from fnmatch import *
+# from tqdm import tqdm
+#
+# for n in tqdm(range(0, 10**11, 279)):
+#     x = str(n)
+#     if fnmatch(x, '78?56*321'):
+#         print(x)
+
+# from itertools import *
+#
+# mass = []
+# for x in range(10):
+#     for i in range(1, 4):
+#         for l in product('13579', repeat=i):
+#             y = ''.join(l)
+#             n = int(f'78{x}56{y}321')
+#             if n % 279 == 0:
+#                 mass.append((n, n // 279))
+#
+# for x in sorted(mass):
+#     print(*x)
+
+'Задача 25.198'
+def div(n):
+    m = []
+    for x in range(2, n//2+1):
+        if n % x == 0 and x % 2 == 0:
+            m.append(x)
+    if len(m) < 5:
+        return [0, 0, 0, 0, 0]
+
+    return m
+
+mass = []
+for i in range(100000000-2, 1, -2):
+    if div(i)[-5] != 0:
+        mass.append((div(i)[-5], len(div(i))))
+    if len(mass) == 5:
+        break
+for x in mass: #sorted(mass, key=lambda p: p[1]):
+    print(*x)
