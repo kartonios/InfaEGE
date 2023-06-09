@@ -114,25 +114,61 @@
 #             print(f'{x:3}', end='')
 #         print()
 
-f=open('24.txt')
-k = int(f.readline())
-n = int(f.readline())
+# f=open('26.txt')
+# k = int(f.readline())
+# n = int(f.readline())
+#
+# p = []
+# cells = [-1]*k
+# for i in range(n):
+#     p.append(list(map(int, f.readline().split())))
+# p.sort()
+#
+# count = 0
+# last_cell = 0
+# for pas in p:
+#     start = pas[0]
+#     end = pas[1]
+#     for j in range(len(cells)):
+#         if start > cells[j]:
+#             count+=1
+#             last_cell = j+1
+#             break
+#
+# print(count, last_cell)
 
+
+'26.112'
+f = open(r"C:\Users\karton\Desktop\InfaEGE\26\26-112.txt")
+b, k = list(map(int, f.readline().split()))
+
+
+cells = [-1]*b
 p = []
-cells = [-1]*k
-for i in range(n):
-    p.append(list(map(int, f.readline().split())))
-p.sort()
 
+for i in range(k):
+    p.append(tuple(map(int, f.readline().split())))
+
+p.sort(key=lambda x: x[0])
 count = 0
-last_cell = 0
-for pas in p:
-    start = pas[0]
-    end = pas[1]
-    for j in range(len(cells)):
-        if start > cells[j]:
-            count+=1
-            last_cell = j+1
-            break
+num = 0
 
-print(count, last_cell)
+for i in range(k):
+    start = p[i][0]
+    end = p[i][0] + p[i][1]
+    for j in range(b):
+        if cells[j] <= start < 1440:
+            count += 1
+            cells[j] = end
+            num = j + 1
+            break
+    else:
+        k = cells.index(min(cells))   # argmin()
+        if cells[k] < 1440:
+            count+=1
+            cells[k] += p[i][1]
+            num = k+1
+print(count, num)
+
+
+
