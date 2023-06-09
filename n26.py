@@ -114,4 +114,25 @@
 #             print(f'{x:3}', end='')
 #         print()
 
+f=open('24.txt')
+k = int(f.readline())
+n = int(f.readline())
 
+p = []
+cells = [-1]*k
+for i in range(n):
+    p.append(list(map(int, f.readline().split())))
+p.sort()
+
+count = 0
+last_cell = 0
+for pas in p:
+    start = pas[0]
+    end = pas[1]
+    for j in range(len(cells)):
+        if start > cells[j]:
+            count+=1
+            last_cell = j+1
+            break
+
+print(count, last_cell)
