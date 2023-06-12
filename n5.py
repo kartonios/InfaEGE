@@ -160,25 +160,38 @@ from tqdm import tqdm
 #     print(int(f(f(f(bin(i)[2:]))), 2), i)
 
 'Задача 5 статград'
+# def f(n):
+#     r = bin(n)[2:]
+#     if n % 5 == 0:
+#         r = r + bin(5)[2:]
+#     else:
+#         r = r + '1'
+#     n = int(r,2)
+#     if n % 7 == 0:
+#         r = r + bin(7)[2:]
+#     else:
+#         r = r + '1'
+#
+#     return int(r, 2)
+#
+#
+#
+# maxN = 0
+# for i in range(1000000, 0,-1):
+#     if f(i) < 1728404:
+#         maxN = max(maxN, i)
+# print(maxN)
+
 def f(n):
     r = bin(n)[2:]
-    if n % 5 == 0:
-        r = r + bin(5)[2:]
+    if n % 10 == 8:
+        r = '100' + r[3:]
+    if n % 10 == 9:
+        r = r[:-3] + '110'
     else:
-        r = r + '1'
-    n = int(r,2)
-    if n % 7 == 0:
-        r = r + bin(7)[2:]
-    else:
-        r = r + '1'
-
+        r = r[:-3] + bin(n%10)[2:]
     return int(r, 2)
 
-
-
-maxN = 0
-for i in range(1000000, 0,-1):
-    if f(i) < 1728404:
-        maxN = max(maxN, i)
-print(maxN)
-
+for i in range(10, 1000):
+    if f(i) == 62:
+        print(f(i), i)

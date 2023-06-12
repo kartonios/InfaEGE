@@ -95,12 +95,22 @@
 #         print(c)
 #         break
 
+#
+# from itertools import *
+# a= []
+# for w in permutations('ВИКТОР'):
+#     word = ''.join(w)
+#     a.append(word)
+# print((sorted(a))[265])
 
 from itertools import *
-a= []
-for w in permutations('ВИКТОР'):
-    word = ''.join(w)
-    a.append(word)
-print((sorted(a))[265])
-
-
+count= 0
+for i, c in enumerate(product(sorted('АБИНРУСТ'), repeat=5), start=1):
+    word = ''.join(c)
+    if word[0] == 'Н' and (word[1] in 'АИУ') \
+    and (word[2] in 'РБНСТ') \
+    and (word[3] in 'АИУ') \
+    and (word[4] in 'РБНСТ'):
+        count+=1
+        if count == 6:
+            print(i, word)
