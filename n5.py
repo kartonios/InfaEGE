@@ -182,16 +182,16 @@ from tqdm import tqdm
 #         maxN = max(maxN, i)
 # print(maxN)
 
-def f(n):
-    r = bin(n)[2:]
-    if n % 10 == 8:
-        r = '100' + r[3:]
-    if n % 10 == 9:
-        r = r[:-3] + '110'
-    else:
-        r = r[:-3] + bin(n%10)[2:]
-    return int(r, 2)
-
-for i in range(10, 1000):
-    if f(i) == 62:
-        print(f(i), i)
+# def f(n):
+#     r = bin(n)[2:]
+#     if n % 10 == 8:
+#         r = '100' + r[3:]
+#     if n % 10 == 9:
+#         r = r[:-3] + '110'
+#     else:
+#         r = r[:-3] + bin(n%10)[2:]
+#     return int(r, 2)
+#
+# for i in range(10, 1000):
+#     if f(i) == 62:
+#         print(f(i), i)
