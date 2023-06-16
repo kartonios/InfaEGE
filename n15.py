@@ -151,14 +151,27 @@
 
 'Задача 15 статград'
 
-def check(a):
-    for x in range(1000):
-        if (not(x&116 != 0 or x&92 != 0) or (not(x&69 == 0) or x&a != 0)) == 0:
+# def check(a):
+#     for x in range(1000):
+#         if (not(x&116 != 0 or x&92 != 0) or (not(x&69 == 0) or x&a != 0)) == 0:
+#             return 0
+#     else:
+#         return 1
+#
+# for A in range(1000):
+#     if check(A) == 1:
+#         print(A)
+#         break
+
+'Задача 15 devinf'
+def f(A):
+    for x in range(1, 1000):
+        if not(not((x | 42 > 64) and (x | 34 <= 102)) or not(x | A < 70)):
             return 0
     else:
         return 1
 
-for A in range(1000):
-    if check(A) == 1:
-        print(A)
+for a in range(1, 1000):
+    if f(a) == 1:
+        print(a)
         break

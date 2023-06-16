@@ -170,18 +170,40 @@
 
 'Задача 16 статград'
 
-def f(n):
-    if n > 1000000:
-        return n
-    if n <= 1000000:
-        return n+f(2*n)
-
-def g(m):
-    return f(m)/m
-
-c = 0
-for x in range(1, 10000000):
-    if g(x) == 2047:
-        c+=1
-print(c)
+# def f(n):
+#     if n > 1000000:
+#         return n
+#     if n <= 1000000:
+#         return n+f(2*n)
+#
+# def g(m):
+#     return f(m)/m
+#
+# c = 0
+# for x in range(1, 10000000):
+#     if g(x) == 2047:
+#         c+=1
+# print(c)
 # 977
+
+'Задача 16 devinf'
+# from functools import lru_cache
+# import sys
+# sys.setrecursionlimit(3000)
+# @lru_cache(None)
+# def f(n):
+#     if n > 3000:
+#         return n
+#     if n <= 3000:
+#         return f(n+2) + 2
+#
+#
+# print(f(40)- f(43))
+
+m = [0]*3003
+m[3002] = 3002
+m[3001] = 3001
+for i in range(3000, 0, -1):
+    m[i] = m[i+2] + 2
+
+print(m[40] - m[43])

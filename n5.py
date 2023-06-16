@@ -181,7 +181,6 @@ from tqdm import tqdm
 #     if f(i) < 1728404:
 #         maxN = max(maxN, i)
 # print(maxN)
-
 # def f(n):
 #     r = bin(n)[2:]
 #     if n % 10 == 8:
@@ -195,3 +194,31 @@ from tqdm import tqdm
 # for i in range(10, 1000):
 #     if f(i) == 62:
 #         print(f(i), i)
+
+'Задача 5'
+def f(n):
+    r = bin(n)[2:]
+    new_r = ''
+    if n % 2 == 0:
+        for i in r:
+            new_r += i*2
+        return int(new_r, 2)
+
+    for j in r:
+        if j == '1':
+            new_r+='0'
+        else:
+            new_r+='1'
+
+    m= ''
+    for k in new_r:
+        m += k * 2
+    return int(m, 2)
+
+for a in range(1, 1000):
+    if f(a) > 60:
+        print(a)
+        break
+
+
+

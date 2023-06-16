@@ -103,14 +103,25 @@
 #     a.append(word)
 # print((sorted(a))[265])
 
-from itertools import *
-count= 0
-for i, c in enumerate(product(sorted('АБИНРУСТ'), repeat=5), start=1):
-    word = ''.join(c)
-    if word[0] == 'Н' and (word[1] in 'АИУ') \
-    and (word[2] in 'РБНСТ') \
-    and (word[3] in 'АИУ') \
-    and (word[4] in 'РБНСТ'):
-        count+=1
-        if count == 6:
-            print(i, word)
+# from itertools import *
+# count= 0
+# for i, c in enumerate(product(sorted('АБИНРУСТ'), repeat=5), start=1):
+#     word = ''.join(c)
+#     if word[0] == 'Н' and (word[1] in 'АИУ') \
+#     and (word[2] in 'РБНСТ') \
+#     and (word[3] in 'АИУ') \
+#     and (word[4] in 'РБНСТ'):
+#         count+=1
+#         if count == 6:
+#             print(i, word)
+
+
+'задача 8'
+# from itertools import *
+# count =0
+# for i in product('ПРОЛИВ', repeat=6):
+#     word = ''.join(i)
+#     if 'П' in word:
+#         count+=1
+#
+# print(count)

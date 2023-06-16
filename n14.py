@@ -88,13 +88,21 @@ from tqdm import tqdm
 
 
 'Задача 14 статград'
-for p in range(5, 32):
-    for x in range(p):
-        for y in range(p):
-            n1 = 2 + 1*p
-            n2 = 4 + 3*p
-            if n1 * n2 == 2 + y*p + x*p**2:
-                print(x+y*p)
-                break
+# for p in range(5, 32):
+#     for x in range(p):
+#         for y in range(p):
+#             n1 = 2 + 1*p
+#             n2 = 4 + 3*p
+#             if n1 * n2 == 2 + y*p + x*p**2:
+#                 print(x+y*p)
+#                 break
 
 # 34
+
+'Задача 14 devinf'
+for x in list(range(10)) + list('ABCDE'):
+    f = int(f'67845{x}65', 15) + int(f'1{x}23456', 15)
+    # f = int('67845065', 15) + x*15**2 + ...
+
+    if f % 14 == 0:
+        print(f // 14, x)

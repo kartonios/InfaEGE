@@ -39,18 +39,26 @@
 
 
 'Задача 13 статград'
-path = "АБ БВЕ ВГИЖ ГИ ДАБ ЕВДЛ ЖЕМ ИЖН КД ЛДК МИЕЛ НМ"
-d = {x[0]: x[1:] for x in path.split()}
-
-def f(s, end):
-    if s[-1] == end:
-        return 1
-    return sum(f(s+c, end) for c in d[s[-1]] if c not in s[0:])
-
-print(f("А", "Н"))
+# path = "АБ БВЕ ВГИЖ ГИ ДАБ ЕВДЛ ЖЕМ ИЖН КД ЛДК МИЕЛ НМ"
+# d = {x[0]: x[1:] for x in path.split()}
+#
+# def f(s, end):
+#     if s[-1] == end:
+#         return 1
+#     return sum(f(s+c, end) for c in d[s[-1]] if c not in s[0:])
+#
+# print(f("А", "Н"))
 
 # 6
 
+path = "АБГ БЕВ ВЗД ГВДЖ ДЗИЖ ЕКМ ЖИЛ ЗЕИМ ИЛ КМ ЛМ М"
 
+d = {n[0]: n[1:] for n in path.split()}
 
+def go(s, end):
+    if s[-1] == end and len(s) > 1:
+        return 1
+    else:
+        return sum(go(s+c, end) for c in d[s[-1]] if c not in s[0:])
 
+print(go('А', 'З')*go('З', 'М'))
