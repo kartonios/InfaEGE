@@ -155,21 +155,42 @@
 #     print(*x)
 
 'Задача 25.198'
-def div(n):
-    m = []
-    for x in range(2, n//2+1):
-        if n % x == 0 and x % 2 == 0:
-            m.append(x)
-    if len(m) < 5:
-        return [0, 0, 0, 0, 0]
+# def div(n):
+#     m = []
+#     for x in range(2, n//2+1):
+#         if n % x == 0 and x % 2 == 0:
+#             m.append(x)
+#     if len(m) < 5:
+#         return [0, 0, 0, 0, 0]
+#
+#     return m
+#
+# mass = []
+# for i in range(100000000-2, 1, -2):
+#     if div(i)[-5] != 0:
+#         mass.append((div(i)[-5], len(div(i))))
+#     if len(mass) == 5:
+#         break
+# for x in mass: #sorted(mass, key=lambda p: p[1]):
+#     print(*x)
 
-    return m
 
-mass = []
-for i in range(100000000-2, 1, -2):
-    if div(i)[-5] != 0:
-        mass.append((div(i)[-5], len(div(i))))
-    if len(mass) == 5:
-        break
-for x in mass: #sorted(mass, key=lambda p: p[1]):
-    print(*x)
+
+from fnmatch import *
+
+def div(a):
+    count = []
+    while a > 1:
+        for n in range(2, (a//2)+1):
+            while a % n == 0:
+                count.append(n)
+                a //= n
+            if a == 1:
+                break
+    return count
+
+for i in range((10**4)+1):
+    n = str(i)
+    if fnmatch(n, '*2?2'):
+        if len(div(int(n))) == 7:
+            print(n, div(int(n)))

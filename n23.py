@@ -135,26 +135,36 @@ nретья – увеличивает на 3. Программа для исп�
 и не содержат двух подряд идущих команд сложения и двух подряд идущих команд умножения?
 '''
 '23'
-start = 1
-end = 55555
-s = [[0]*4 for i in range(end+1)]
-# m = [[0]*2 for j in range(end+1)]
-s[start+1][0] = 1
-s[start+2][1] = 1
-s[start*2][2] = 1
-s[start*3][3] = 1
+# start = 1
+# end = 55555
+# s = [[0]*4 for i in range(end+1)]
+# # m = [[0]*2 for j in range(end+1)]
+# s[start+1][0] = 1
+# s[start+2][1] = 1
+# s[start*2][2] = 1
+# s[start*3][3] = 1
+#
+# for n in range(start, end+1):
+#     if n + 1 <= end:
+#         s[n+1][0] += s[n][2] + s[n][3]
+#     if n + 2 <= end:
+#         s[n+2][1] += s[n][2] + s[n][3]
+#     if n * 2 <= end:
+#         s[n*2][2] += s[n][0] + s[n][1]
+#     if n * 3 <= end:
+#         s[n*3][3] += s[n][0] + s[n][1]
+#
+# print(sum(s[end]))
 
-for n in range(start, end+1):
-    if n + 1 <= end:
-        s[n+1][0] += s[n][2] + s[n][3]
-    if n + 2 <= end:
-        s[n+2][1] += s[n][2] + s[n][3]
-    if n * 2 <= end:
-        s[n*2][2] += s[n][0] + s[n][1]
-    if n * 3 <= end:
-        s[n*3][3] += s[n][0] + s[n][1]
 
-print(sum(s[end]))
+def f(s, n):
+    if s == n:
+        return 1
+    if n == 13 or s > n:
+        return 0
+    return f(s+1, n)+f(s*2, n)+f(s*3, n)
 
+
+print(f(3, 8)*f(8, 18))
 
 

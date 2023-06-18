@@ -193,20 +193,34 @@
 
 
 '24 statgrad'
-maxl = {k:0 for k in "QWERTYUIOPASDFGHJKLZXCVBNM"}
+# maxl = {k:0 for k in "QWERTYUIOPASDFGHJKLZXCVBNM"}
+#
+# s = open(r"D:\downloads\stat202303_files\24.txt").read().splitlines()
+# for l in s:
+#     d = {k:0 for k in "QWERTYUIOPASDFGHJKLZXCVBNM"}
+#     for i in range(len(l)-1):
+#         if l[i] == 'A':
+#             d[l[i+1]] +=1
+#
+#     maxv = max(d.values())
+#     for k, v in d.items():
+#         if v == maxv:
+#             maxl[k] += 1
+#
+# print(max(maxl.values()))
 
-s = open(r"D:\downloads\stat202303_files\24.txt").read().splitlines()
-for l in s:
-    d = {k:0 for k in "QWERTYUIOPASDFGHJKLZXCVBNM"}
-    for i in range(len(l)-1):
-        if l[i] == 'A':
-            d[l[i+1]] +=1
 
-    maxv = max(d.values())
-    for k, v in d.items():
-        if v == maxv:
-            maxl[k] += 1
-
-print(max(maxl.values()))
+'24'
+f = open(r"D:\downloads\24_9471.txt").read()
+alfb = 'QWERTYUIOPASDFGHJKLZXCVBNM'
+maxl= 0
+for w in alfb:
+    while w*2 in f:
+        f = f.replace(w*2, '- -')
 
 
+for i in f.split():
+    maxl = max(maxl, len(i))
+
+
+print(maxl)

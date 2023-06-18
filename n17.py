@@ -170,15 +170,33 @@
 
 
 '17'
-a = [int(x) for x in open('112.txt')]
-min53 = min([x for x in a if 99 < x < 1000 and x % 10 == 5])
-r = []
-count = 0
-for i in range(len(a)-1):
-    a1 = a[i]
-    a2 = a[i+1]
-    if ((99 < a1 < 1000) or (99 < a2 < 1000)) and ((a1+a2) % min53 == 0):
-        r.append(a1+a2)
-        count += 1
+# a = [int(x) for x in open('112.txt')]
+# min53 = min([x for x in a if 99 < x < 1000 and x % 10 == 5])
+# r = []
+# count = 0
+# for i in range(len(a)-1):
+#     a1 = a[i]
+#     a2 = a[i+1]
+#     if ((99 < a1 < 1000) or (99 < a2 < 1000)) and ((a1+a2) % min53 == 0):
+#         r.append(a1+a2)
+#         count += 1
+#
+# print(count, max(r))
 
-print(count, max(r))
+
+'17'
+# a = [int(x) for x in open(r"D:\downloads\17_9466.txt")]
+# max2 = 94
+# pairs = 0
+# max_pairs = 0
+#
+# for i in range(len(a)-1):
+#     if (9 < abs(a[i]) < 100) or (9 < abs(a[i+1]) < 100):
+#         f = a[i]
+#         s = a[i+1]
+#         summ = f+s
+#         if summ <= max2:
+#             pairs+=1
+#             max_pairs = max(max_pairs, summ)
+# print(pairs, max_pairs)
+

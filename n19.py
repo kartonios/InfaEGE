@@ -477,30 +477,30 @@
 '''
 
 'Задача 19.112'
-def n_m(c):
-    if c > 42:
-        return [c-1, c-3, c-7]
-    if c < 42:
-        return [c+1, c+3, c+7]
-
-def game(c, n=0):
-    if c == 42:
-        return 'win'
-    if n > 4:
-        return 'stop'
-
-    if any(game(m, n+1) == 'win' for m in n_m(c)):
-        return 'p1'
-    if all(game(m, n+1) == 'p1' for m in n_m(c)):
-        return 'v1'
-    if any(game(m, n+1) == 'v1' for m in n_m(c)):
-        return 'p2'
-    if all(game(m, n+1) == 'p1' or game(m, n+1) == 'p2' for m in n_m(c)):
-        return 'v2'
-
-for s in range(1, 100):
-    if game(s) == 'p2':
-        print(s)
+# def n_m(c):
+#     if c > 42:
+#         return [c-1, c-3, c-7]
+#     if c < 42:
+#         return [c+1, c+3, c+7]
+#
+# def game(c, n=0):
+#     if c == 42:
+#         return 'win'
+#     if n > 4:
+#         return 'stop'
+#
+#     if any(game(m, n+1) == 'win' for m in n_m(c)):
+#         return 'p1'
+#     if all(game(m, n+1) == 'p1' for m in n_m(c)):
+#         return 'v1'
+#     if any(game(m, n+1) == 'v1' for m in n_m(c)):
+#         return 'p2'
+#     if all(game(m, n+1) == 'p1' or game(m, n+1) == 'p2' for m in n_m(c)):
+#         return 'v2'
+#
+# for s in range(1, 100):
+#     if game(s) == 'p2':
+#         print(s)
 # def game(a, c, m):
 #     if a == 42:
 #         return c%2 == m%2
@@ -525,4 +525,41 @@ for s in range(1, 100):
 20. 31 35 + -    31 37 + + 
 21. 50 + 
 '''
+
+
+'19'
+# def n_m(c):
+#     return [(c[0]*2, c[1]), (c[0], c[1]+3), (c[0], c[1]+4)]
+# def game(c):
+#     if sum(c) > 14:
+#         return 'win'
+#     elif any(game(m) == 'win' for m in n_m(c)):
+#         return 'p1'
+#     elif all(game(m) == 'p1' for m in n_m(c)):
+#         return 'v1'
+#     elif any(game(m) == 'v1' for m in n_m(c)):
+#         return 'p2'
+#     elif all(game(m) == 'p2' or game(m) == 'p1' for m in n_m(c)):
+#         return 'v2'
+#
+#
+# for s in range(1, 14):
+#     if game((3, s)) == 'v1':
+#         print(s)
+
+
+
+def f(a, b, c, m):
+    if a+b > 14:
+        return c%2 == m%2
+    if c > m:
+        return 0
+
+    h = [f(a*2, b, c+1, m), f(a, b+3, c+1, m), f(a, b+4, c+1, m)]
+
+    return all(h) if (c+1)%2 == m%2 else all(h)
+
+for s in range(1, 14):
+    if f(3, s, 0, 3) == 1:
+        print(s)
 
