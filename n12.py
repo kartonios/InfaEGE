@@ -170,9 +170,17 @@
 #                 print(n)
 #                 break
 
-s = '1' * 84
-while '11111' in s or '888' in s:
-    s = s.replace('222', '1', 1)
-    s = s.replace('111', '2', 1)
 
-print(s)
+for i in range(100):
+    s = '1'
+    s+= '7'*i
+    while '17' in s or '377' in s or '777' in s:
+        if '17' in s:
+            s = s.replace('17', '1', 1)
+        if '377' in s:
+            s = s.replace('377', '73', 1)
+        if '777' in s:
+            s = s.replace('777', '3', 1)
+    if s.count('3') ==2:
+        print(i)
+        break
