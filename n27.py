@@ -532,25 +532,65 @@
 
 
 '27 demo2022'
-f = list(map(int, open(r"C:\Users\karton\Desktop\InfaEGE\demo2022_files\27\27_B.txt").read().split()))
-n = f.pop(0)
-m = [0] * 43
-count_len = 0
-last_len = 0
-len_mass = []
+# f = list(map(int, open(r"C:\Users\karton\Desktop\InfaEGE\demo2022_files\27\27_B.txt").read().split()))
+# n = f.pop(0)
+# m = [0] * 43
+# count_len = 0
+# last_len = 0
+# len_mass = []
+#
+# for i in range(n):
+#     m[f[i] % 43] += 1
+#     count_len += f[i]
+#
+#     if f[i] % 43 != 0:
+#         len_mass.append((m[0] - last_len, count_len))
+#         last_len = m[0]
+#         count_len = 0
+#
+#
+# len_mass.sort(key=lambda x: x[1], reverse=True)
+# print(len_mass)
 
-for i in range(n):
-    m[f[i] % 43] += 1
-    count_len += f[i]
-
-    if f[i] % 43 != 0:
-        len_mass.append((m[0] - last_len, count_len))
-        last_len = m[0]
-        count_len = 0
 
 
-len_mass.sort(key=lambda x: x[1], reverse=True)
-print(len_mass)
 
+'27'
+f = open(r"D:\downloads\27_B_9475.txt")
+n = f.readline()
+k = [0] * 23
+s = [0] * 23
 
+print(*range(23), sep='\t')
+print(*k, sep='\t')
+print(*s, sep='\t')
+
+res = 0
+for line in f.read().split():
+    x = int(line)
+    xr = x % 23
+
+    kcopy = k[:]
+    scopy = s[:]
+
+    for r in range(23):
+        # для нового мн-ва c остатком r: {y_r1, y_r2, ..., y_rN}_r + {x}_xr  ->  {y_r1, y_r2, ..., y_rN, x}_ new_r
+        newr = (r + xr) % 23
+        if s[r] + x > s[newr] and s[r] > 0:
+            scopy[newr] = s[r] + x
+            kcopy[newr] = k[r] + 1
+
+    # # для нового мн-ва {x}
+    if x > s[xr]:
+        scopy[xr] = x
+        kcopy[xr] = 1
+
+    k = kcopy[:]
+    s = scopy[:]
+    # print('\n', x, xr)
+    # print(*range(23), sep='\t')
+    # print(*k, sep='\t')
+    # print(*s, sep='\t')
+
+print(scopy[0], kcopy[0])
 

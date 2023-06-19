@@ -194,3 +194,15 @@ for i in range((10**4)+1):
     if fnmatch(n, '*2?2'):
         if len(div(int(n))) == 7:
             print(n, div(int(n)))
+
+
+def is_prime(n):
+    if n % 2 == 0:
+        return n == 2
+
+    for a in range(3, int((n**0.5)+1), 2):
+        if n % a == 0:
+            return 0
+    return 1
+
+
