@@ -528,38 +528,25 @@
 
 
 '19'
-# def n_m(c):
-#     return [(c[0]*2, c[1]), (c[0], c[1]+3), (c[0], c[1]+4)]
-# def game(c):
-#     if sum(c) > 14:
-#         return 'win'
-#     elif any(game(m) == 'win' for m in n_m(c)):
-#         return 'p1'
-#     elif all(game(m) == 'p1' for m in n_m(c)):
-#         return 'v1'
-#     elif any(game(m) == 'v1' for m in n_m(c)):
-#         return 'p2'
-#     elif all(game(m) == 'p2' or game(m) == 'p1' for m in n_m(c)):
-#         return 'v2'
-#
-#
-# for s in range(1, 14):
-#     if game((3, s)) == 'v1':
-#         print(s)
+def n_m(c):
+    return [(c[0]*2, c[1]), (c[0], c[1]+3), (c[0], c[1]+4)]
+def game(c):
+    if c[0]**2 + c[1]**2 > 196:
+        return 'win'
+    elif any(game(m) == 'win' for m in n_m(c)):
+        return 'p1'
+    elif all(game(m) == 'p1' for m in n_m(c)):
+        return 'v1'
+    elif any(game(m) == 'v1' for m in n_m(c)):
+        return 'p2'
+    elif all(game(m) == 'p2' or game(m) == 'p1' for m in n_m(c)):
+        return 'v2'
 
-
-
-def f(a, b, c, m):
-    if a+b > 14:
-        return c%2 == m%2
-    if c > m:
-        return 0
-
-    h = [f(a*2, b, c+1, m), f(a, b+3, c+1, m), f(a, b+4, c+1, m)]
-
-    return all(h) if (c+1)%2 == m%2 else all(h)
 
 for s in range(1, 14):
-    if f(3, s, 0, 3) == 1:
+    if game((3, s)) == 'v2':
         print(s)
+
+
+
 
